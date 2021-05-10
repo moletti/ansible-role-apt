@@ -1,0 +1,10 @@
+---
+- name: Gathering ansible_distribution facts
+  ansible.builtin.setup:
+    gather_subset: ['min']
+    filter: ansible_distribution
+
+- name: Check distribution
+  assert:
+    that: ansible_distribution in ['Debian', 'Ubuntu']
+    msg: "You're distribution are not supported"

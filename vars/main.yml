@@ -1,0 +1,5 @@
+---
+apt_dependencies:
+  - gnupg2
+  - apt-transport-https
+  - ca-certificates

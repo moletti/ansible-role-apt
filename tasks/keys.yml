@@ -1,0 +1,7 @@
+---
+- name: Add an Apt signing key
+  ansible.builtin.apt_key:
+    url: "{{ item.url }}"
+    state: present
+  with_items:
+    - "{{ apt['keys'] }}"
