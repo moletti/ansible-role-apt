@@ -4,4 +4,4 @@
     url: "{{ item.url }}"
     state: present
   with_items:
-    - "{{ apt['keys'] }}"
+    - "{{ _apt['keys'] }}"

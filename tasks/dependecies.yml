@@ -6,3 +6,17 @@
     update_cache: yes
     cache_valid_time: 3600
     install_recommends: no
+
+- name: Gathering package_facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+#  This is a dummy transitional package - https support has been moved into the apt package in 1.5.
+- name: Install apt-transport-https
+  ansible.builtin.apt:
+    name: apt-transport-https
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+    install_recommends: no
+  when:  ansible_facts.packages.apt.0.version is version('1.5', '<=')

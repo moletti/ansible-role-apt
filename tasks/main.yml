@@ -6,13 +6,13 @@
   tags: dependencies
 
 - import_tasks: keys.yml
-  when: apt.keys | lenght > 0
+  when: _apt['keys'] | length > 0
   tags: keys
 
 - import_tasks: repositories.yml
-  when: apt.repositories | length > 0
+  when: _apt['repositories'] | length > 0
   tags: repositiores
 
 - import_tasks: packages.yml
-  when: apt.packages | length > 0
+  when: _apt['packages'] | length > 0
   tags: packages

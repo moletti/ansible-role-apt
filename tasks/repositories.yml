@@ -5,4 +5,4 @@
     state: present
     filename: "{{ item.name | default(omit) }}"
   with_items:
-    - "{{ apt.repositories }}"
+    - "{{ _apt['repositories'] }}"

@@ -1,5 +1,11 @@
 ---
 apt_dependencies:
-  - gnupg2
-  - apt-transport-https
+  - gnupg
   - ca-certificates
+
+_apt_default:
+  packages: []
+  keys: []
+  repositories: []
+
+_apt: "{{ _apt_default | combine(apt, recursive=True, list_merge='append') }}"

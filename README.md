@@ -1,6 +1,11 @@
----
-- name: Converge
-  hosts: all
+Moletti.apt
+=========
+Base role for install apt packages, repositories and keys.
+
+Example Playbook
+----------------
+```yaml
+- hosts: all
   vars:
     apt:
       packages:
@@ -14,4 +19,5 @@
         - name: nginx
           repo: "deb https://nginx.org/packages/mainline/debian/ {{ ansible_distribution_release }} nginx"
   roles:
-    - { role: ansible-role-apt, tags: apt }
+    - { role: moletti.apt, tags: apt }
+```
