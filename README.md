@@ -17,7 +17,7 @@ Example Playbook
           url: https://nginx.org/keys/nginx_signing.key
       repositories:
         - name: nginx
-          repo: "deb https://nginx.org/packages/mainline/debian/ {{ ansible_distribution_release }} nginx"
+          repo: "deb https://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"
   roles:
     - { role: moletti.apt, tags: apt }
 ```
