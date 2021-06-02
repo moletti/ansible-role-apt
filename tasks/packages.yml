@@ -1,7 +1,9 @@
 ---
 - name: Install apt packages
   ansible.builtin.apt:
-    name: "{{ _apt['packages'] }}"
-    state: present
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
     update_cache: yes
     cache_valid_time: 3600
+  with_items:
+    - "{{ apt_packages }}"

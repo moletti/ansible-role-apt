@@ -1,7 +1,9 @@
 ---
 - name: Add an Apt signing key
   ansible.builtin.apt_key:
+    id: "{{ item.id | default(omit) }}"
     url: "{{ item.url }}"
+    keyring: "{{ item.keyring | default(omit) }}"
     state: present
   with_items:
-    - "{{ _apt['keys'] }}"
+    - "{{ apt_keys }}"

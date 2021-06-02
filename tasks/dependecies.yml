@@ -9,7 +9,7 @@
 
 - name: Gathering package_facts
   ansible.builtin.package_facts:
-    manager: auto
+    manager: apt
 
 #  This is a dummy transitional package - https support has been moved into the apt package in 1.5.
 - name: Install apt-transport-https

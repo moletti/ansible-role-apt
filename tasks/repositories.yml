@@ -3,6 +3,6 @@
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
     state: present
-    filename: "{{ item.name | default(omit) }}"
+    filename: "{{ item.filename | default(omit) }}"
   with_items:
-    - "{{ _apt['repositories'] }}"
+    - "{{ apt_repositories }}"
