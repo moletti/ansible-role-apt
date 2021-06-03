@@ -2,6 +2,32 @@ Ansible role: Apt
 =========
 Base role for managing apt packages, repositories and keys.
 
+Install Playbook
+----------------
+```bash
+ansible-galaxy install moletti.apt
+```
+
+Example Playbook
+----------------
+```yaml
+- hosts: all
+  gather_facts: no
+  vars:
+    apt_packages:
+      - name: ['htop', 'nload', 'vim']
+      - name: ['nano', 'less']
+        state: latest
+    apt_keys:
+      - url: https://nginx.org/keys/nginx_signing.key
+    apt_repositories:
+      - filename: nginx
+        repo: "deb https://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"
+  roles:
+    - { role: moletti.apt, tags: apt }
+```
+
+
 Role Variables
 --------------
 |  variable        | type         | default |
@@ -63,36 +89,6 @@ apt_repositories:
 | update_cache_retries         |  -          |            |
 | update_cache_retry_max_delay |  -          |            |
 | validate_cert                |  -          |            |
-
-     
-Install Playbook
-----------------
-```bash
-ansible-galaxy install moletti.apt
-```
-
-Example Playbook
-----------------
-```yaml
-- hosts: all
-  gather_facts: no
-  vars:
-    apt_packages:
-      - name:
-          - htop
-          - nload
-          - vim
-      - name:
-          - nano
-          - less
-        state: latest
-    apt_keys:
-      - url: https://nginx.org/keys/nginx_signing.key
-    apt_repositories:
-      - repo: "deb https://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"
-  roles:
-    - { role: moletti.apt, tags: apt }
-```
 
 LICENSE
 -------
