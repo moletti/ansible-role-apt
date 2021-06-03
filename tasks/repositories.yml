@@ -1,8 +1,15 @@
 ---
 - name: Add repositories into sources list
   ansible.builtin.apt_repository:
-    repo: "{{ item.repo }}"
-    state: present
+    codename: "{{ item.codename | default(omit) }}"
     filename: "{{ item.filename | default(omit) }}"
+    install_python_apt: "{{ item.install_python_apt | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+    repo: "{{ item.repo }}"
+    state: "{{ item.state | default(omit) }}"
+    update_cache: "{{ item.update_cache | default(omit) }}"
+    update_cache_retries: "{{ item.update_cache_retries | default(omit) }}"
+    update_cache_retry_max_delay: "{{ item.update_cache_retry_max_delay  | default(omit) }}"
+    validate_cert: "{{ item.validate_certs | default(omit) }}"
   with_items:
     - "{{ apt_repositories }}"
