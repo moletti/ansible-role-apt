@@ -1,6 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  gather_facts: no
   vars_files:
     - "../include_vars/apt.yml"
   roles:

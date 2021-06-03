@@ -2,41 +2,9 @@
 - name: Gathering ansible_distribution facts
   ansible.builtin.setup:
     gather_subset: ['min']
-    filter: ansible_distribution
 
 - name: Check distribution
   ansible.builtin.assert:
     that: ansible_distribution in ['Debian', 'Ubuntu']
     msg: "You're distribution are not supported"
     quiet: true
-
-- name: Check keys
-  ansible.builtin.assert:
-    that:
-      - item['url'] is defined
-    quiet: true
-  with_items:
-    - "{{ apt_keys }}"
-
-- name: Check repositories
-  ansible.builtin.assert:
-    that:
-      - item['repo'] is defined
-    quiet: true
-  with_items:
-    - "{{ apt_repositories }}"
-
-- name: Check packages
-  ansible.builtin.assert:
-    that:
-      - item['name'] is defined
-      - "{% if item['state'] is not defined -%}
-          True
-        {% elif item['state'] is defined and item['state'] in ('present', 'latest', 'absent') -%}
-          True
-        {%- else -%}
-          False
-        {%- endif %}"
-    quiet: true
-  with_items:
-    - "{{ apt_packages }}"
