@@ -17,7 +17,7 @@
     purge: "{{ item.purge | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     update_cache: "{{ item.update_cache | default(true) }}"
-    update_cache_retries: "{{ item.update_cache_retries | default(omit)}}"
+    update_cache_retries: "{{ item.update_cache_retries | default(omit) }}"
     update_cache_retry_max_delay: "{{ item.update_cache_retry_max_delay | default(omit) }}"
     upgrade: "{{ item.upgrade | default(omit) }}"
   with_items:
