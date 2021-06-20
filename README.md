@@ -2,7 +2,7 @@ Ansible role: Apt
 =========
 Base role for managing apt packages, repositories and keys.
 
-Install
+Role install
 ----------------
 ```bash
 ansible-galaxy install moletti.apt
@@ -30,11 +30,12 @@ Example Playbook
 
 Role Variables
 --------------
-|  variable        | type         | default |
-|------------------|--------------|---------|
-| apt_packages     | list(dict)   | []      |
-| apt_keys         | list(dict)   | []      |
-| apt_repositories | list(dict)   | []      |
+|  variable        | type         | default | description                                  |
+|------------------|--------------|---------|----------------------------------------------|
+| apt_packages     | list(dict)   | []      | Manages apt packages                         |
+| apt_keys         | list(dict)   | []      | Manages apt keys                             |
+| apt_sources      | list(string) | []      | Manages apt sources ( /etc/apt/source.list ) |
+| apt_repositories | list(dict)   | []      | Manages apt repositories                     |
 
 
 

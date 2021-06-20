@@ -9,6 +9,10 @@
   when: apt_keys | length > 0
   tags: keys
 
+- import_tasks: sources.yml
+  when: apt_sources | length > 0
+  tags: sources
+
 - import_tasks: repositories.yml
   when: apt_repositories | length > 0
   tags: repositiores

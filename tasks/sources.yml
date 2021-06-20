@@ -1,0 +1,14 @@
+---
+- name: Template source.list
+  ansible.builtin.template:
+    src: source.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+  register: template_source_list
+
+- name: Apt update cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: template_source_list is changes
