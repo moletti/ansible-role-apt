@@ -1,0 +1,142 @@
+argument_specs:
+  main:
+    short_description: The main entry point.
+    options:
+      apt_packages:
+        type: "list"
+        default: []
+        elements: "dict"
+        options:
+          allow_unauthenticated:
+            type: "bool"
+            required: false
+          autoclean:
+            type: "bool"
+            required: false
+          autoremove:
+            type: "bool"
+            required: false
+          cache_valid_time:
+            type: "int"
+            required: false
+          deb:
+            type: "str"
+            required: false
+          default_release:
+            type: "str"
+            required: false
+          dpkg_options:
+            type: "str"
+            required: false
+          force:
+            type: "bool"
+            required: false
+          force_apt_get:
+            type: "bool"
+            default: true
+            required: false
+          install_recommends:
+            type: "bool"
+            required: false
+          name:
+            type: "list"
+            elements: "str"
+            required: false
+          only_upgrade:
+            type: "bool"
+            required: false
+          policy_rc_d:
+            type: "int"
+            required: false
+          purge:
+            type: "bool"
+            required: false
+          state:
+            type: "str"
+            required: false
+            choices: ["present", "absent", "latest", "build-dep", "fixed"]
+          update_cache:
+            type: "bool"
+            required: false
+          update_cache_retries:
+            type: "int"
+            required: false
+          update_cache_retry_max_delay:
+            type: "int"
+            required: false
+          upgrade:
+            type: "bool"
+            required: false
+
+      apt_keys:
+        type: "list"
+        default: []
+        elements: "dict"
+        options:
+          data:
+            type: "str"
+            required: false
+          file:
+            type: "str"
+            required: false
+          id:
+            type: "str"
+            required: false
+          keyring:
+            type: "str"
+            required: false
+          keyserver:
+            type: "str"
+            required: false
+          state:
+            type: "str"
+            required: false
+            choices: [ "present", "absent" ]
+          url:
+            type: "str"
+            required: false
+          validate_certs:
+            type: "bool"
+            required: false
+
+      apt_sources:
+        type: "list"
+        default: []
+        elements: "str"
+
+      apt_repositories:
+        type: "list"
+        default: []
+        elements: "dict"
+        options:
+          codename:
+            type: "str"
+            required: false
+          filename:
+            type: "str"
+            required: false
+          install_python_apt:
+            type: "bool"
+            required: false
+          mode:
+            type: "str"
+            required: false
+          repo:
+            type: "str"
+            required: true
+          state:
+            type: "str"
+            required: false
+            choices: ["present", "absent"]
+          update_cache:
+            type: "bool"
+            required: false
+          update_cache_retries:
+            type: "int"
+            required: false
+          update_cache_retry_max_delay:
+            type: "int"
+            required: false
+          validate_cert:
+            type: "bool"
+            required: false
