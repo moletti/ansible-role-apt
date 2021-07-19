@@ -114,7 +114,7 @@ argument_specs:
             required: false
           filename:
             type: "str"
-            required: false
+            required: true
           install_python_apt:
             type: "bool"
             required: false

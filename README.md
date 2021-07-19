@@ -81,7 +81,7 @@ apt_repositories:
 |  Parameter                   |  required   | default    |
 |------------------------------|-------------|------------|
 | codename                     |  -          |            |
-| filename                     |  -          |            |
+| filename                     |  +          |            |
 | install_python_apt           |  -          |            |
 | mode                         |  -          |            |
 | repo                         |  +          |            |
