@@ -8,7 +8,8 @@
     mode: 0644
   register: template_source_list
 
+# it's no in handlers, because flush_handlers task does not support when conditional
 - name: Apt update cache
   ansible.builtin.apt:
     update_cache: yes
-  when: template_source_list is changes
+  when: template_source_list is changed

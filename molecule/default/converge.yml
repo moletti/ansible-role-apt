@@ -1,8 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   vars_files:
     - "../include_vars/apt.yml"
   roles:
-    - { role: ansible-role-apt, tags: apt }
+    - { role: moletti.apt, tags: apt }
