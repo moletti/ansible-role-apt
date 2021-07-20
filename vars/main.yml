@@ -1,4 +1,7 @@
 ---
 _apt_dependencies:
-  - gnupg
-  - ca-certificates
+  default:
+    - gnupg
+    - ca-certificates
+
+apt_dependencies: "{{ _apt_dependencies[ansible_os_family] | default(_apt_dependencies['default']) }}"

@@ -1,7 +1,7 @@
 ---
 - name: Install dependencies
   ansible.builtin.apt:
-    name: "{{ _apt_dependencies }}"
+    name: "{{ apt_dependencies }}"
     state: present
     update_cache: yes
     cache_valid_time: 3600
