@@ -1,6 +1,10 @@
+
 Ansible role: Apt
 =========
+![Ansible Role](https://img.shields.io/ansible/role/54865) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/moletti/ansible-role-apt) ![Ansible Quality Score](https://img.shields.io/ansible/quality/54865) ![Ansible Role](https://img.shields.io/ansible/role/d/54865)
+
 Base role for managing apt packages, repositories and keys.
+
 
 Role install
 ----------------
@@ -12,7 +16,7 @@ Example Playbook
 ----------------
 ```yaml
 - hosts: all
-  gather_facts: no
+  gather_facts: yes
   vars:
     apt_packages:
       - name: ['htop', 'nload', 'vim']
@@ -23,6 +27,9 @@ Example Playbook
     apt_repositories:
       - filename: nginx
         repo: "deb https://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"
+    apt_sources:
+      - "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main"
+      - "deb http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main"
   roles:
     - { role: moletti.apt, tags: apt }
 ```
@@ -41,7 +48,7 @@ Role Variables
 
 apt_packages:
 
-|  Parameter                    |  required  |  default   |
+|  Parameter                   |  required  |  default   |
 |------------------------------|------------|------------|
 | allow_unauthenticated        |  -         |            |
 | autoclean                    |  -         |            |
