@@ -9,25 +9,26 @@ lint: |
   ansible-lint .
 
 platforms:
-  - name: debian9
-    image: moletti/molecule-debian:9
+  - name: ${MOLECULE_DISTR:-debian}${MOLECULE_DISTR_VERSION:-10}
+    image: moletti/molecule-${MOLECULE_DISTR:-debian}:${MOLECULE_DISTR_VERSION:-10}
     pre_build_image: true
     privileged: true
-    groups: ["debian"]
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    command: ~
-  - name: debian10
-    image: moletti/molecule-debian:10
-    pre_build_image: true
-    privileged: true
-    groups: ["debian"]
+    groups: ["${MOLECULE_DISTR:-debian}"]
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     command: ~
 
 provisioner:
   name: ansible
-
+  inventory:
+    group_vars:
+      ubuntu:
+        apt_sources:
+          - "deb http://archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} main restricted universe multiverse"
+          - "deb http://archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates main restricted universe multiverse"
+      debian:
+        apt_sources:
+          - "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main"
+          - "deb http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main"
 verifier:
   name: ansible

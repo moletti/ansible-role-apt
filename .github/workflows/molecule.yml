@@ -13,6 +13,22 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - distr: debian
+            distr_version: jessie
+          - distr: debian
+            distr_version: stretch
+          - distr: debian
+            distr_version: buster
+          - distr: ubuntu
+            distr_version: 16.04
+          - distr: ubuntu
+            distr_version: 18.04
+          - distr: ubuntu
+            distr_version: 20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,3 +36,6 @@ jobs:
           fetch-depth: 0
       - name: Molecule test
         uses: moletti/molecule-action@v1
+        env:
+          MOLECULE_DISTR: ${{ matrix.distr }}
+          MOLECULE_DISTR_VERSION: ${{ matrix.distr_version }}

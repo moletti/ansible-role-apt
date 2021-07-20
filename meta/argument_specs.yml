@@ -91,7 +91,7 @@ argument_specs:
           state:
             type: "str"
             required: false
-            choices: [ "present", "absent" ]
+            choices: ["present", "absent"]
           url:
             type: "str"
             required: false
