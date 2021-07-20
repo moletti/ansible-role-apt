@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.1.0](https://github.com/moletti/ansible-role-apt/compare/v2.0.0...v2.1.0) (2021-07-20)
+
+
+### Bug Fixes
+
+* Fix apt_dependencies ([9a48a45](https://github.com/moletti/ansible-role-apt/commit/9a48a45c36f830645031f5d4041a8eb604fbf8ce))
+
+
+### Features
+
+* Add Ubuntu support ([4ae9520](https://github.com/moletti/ansible-role-apt/commit/4ae952059251f15608324d7dcec682ac7e2f1a72))
+
 # [2.0.0](https://github.com/moletti/ansible-role-apt/compare/v1.2.0...v2.0.0) (2021-07-19)
 
 
