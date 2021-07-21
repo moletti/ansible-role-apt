@@ -1,10 +1,7 @@
 
 Ansible role: Apt
 =========
-[![Ansible Role](https://img.shields.io/ansible/role/54865)](https://galaxy.ansible.com/moletti/apt) 
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/moletti/ansible-role-apt)](https://github.com/moletti/ansible-role-apt/releases)
-[![Ansible Quality Score](https://img.shields.io/ansible/quality/54865)](https://galaxy.ansible.com/moletti/apt)
-[![Ansible Role](https://img.shields.io/ansible/role/d/54865)](https://galaxy.ansible.com/moletti/apt)
+[![Ansible Role](https://img.shields.io/ansible/role/54865)](https://galaxy.ansible.com/moletti/apt) [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/moletti/ansible-role-apt)](https://github.com/moletti/ansible-role-apt/releases) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/moletti/ansible-role-apt/Ansible%20Molecule?label=test)](https://github.com/moletti/ansible-role-apt/actions/workflows/molecule.yml) [![Ansible Quality Score](https://img.shields.io/ansible/quality/54865)](https://galaxy.ansible.com/moletti/apt) [![Ansible Role](https://img.shields.io/ansible/role/d/54865)](https://galaxy.ansible.com/moletti/apt)
 
 Base role for managing apt packages, repositories and keys.
 
