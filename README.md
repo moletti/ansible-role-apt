@@ -1,7 +1,10 @@
 
 Ansible role: Apt
 =========
-![Ansible Role](https://img.shields.io/ansible/role/54865) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/moletti/ansible-role-apt) ![Ansible Quality Score](https://img.shields.io/ansible/quality/54865) ![Ansible Role](https://img.shields.io/ansible/role/d/54865)
+[![Ansible Role](https://img.shields.io/ansible/role/54865)](https://galaxy.ansible.com/moletti/apt) 
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/moletti/ansible-role-apt)](https://github.com/moletti/ansible-role-apt/releases)
+[![Ansible Quality Score](https://img.shields.io/ansible/quality/54865)](https://galaxy.ansible.com/moletti/apt)
+[![Ansible Role](https://img.shields.io/ansible/role/d/54865)](https://galaxy.ansible.com/moletti/apt)
 
 Base role for managing apt packages, repositories and keys.
 
