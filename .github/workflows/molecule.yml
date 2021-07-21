@@ -3,9 +3,8 @@ name: Ansible Molecule
 
 on:
   push:
-    branches-ignore:
-      - '**'
-    tags:
+    tags-ignore:
+      - '*'
   pull_request:
   schedule:
     - cron: '0 0 * * 5'
