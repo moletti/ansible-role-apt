@@ -1,8 +1,4 @@
 ---
-- name: Gathering ansible_distribution facts
-  ansible.builtin.setup:
-    gather_subset: ['min']
-
 - name: Check distribution
   ansible.builtin.assert:
     that: ansible_distribution in ['Debian', 'Ubuntu']
