@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.2.0](https://github.com/moletti/ansible-role-apt/compare/v2.1.0...v2.2.0) (2021-07-24)
+
+
+### Features
+
+* Add support apt_preferences ([2af18c5](https://github.com/moletti/ansible-role-apt/commit/2af18c5a81c136dd67b3f73e88a60e6b33083ea9))
+
 # [2.1.0](https://github.com/moletti/ansible-role-apt/compare/v2.0.0...v2.1.0) (2021-07-20)
 
 
