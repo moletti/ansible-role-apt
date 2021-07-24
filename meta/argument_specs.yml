@@ -140,3 +140,30 @@ argument_specs:
           validate_cert:
             type: "bool"
             required: false
+
+      apt_preferences:
+        type: "list"
+        default: []
+        elements: "dict"
+        options:
+          filename:
+            type: "str"
+            required: true
+          package:
+            type: "str"
+            requried: false
+            default: "*"
+          pin:
+            type: "str"
+            required: true
+          priority:
+            type: "str"
+            required: true
+          state:
+            type: "str"
+            required: false
+            default: "present"
+            choices: ["present", "absent"]
+          explantion:
+            type: "str"
+            required: false

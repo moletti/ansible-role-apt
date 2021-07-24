@@ -2,4 +2,5 @@
 apt_packages: []
 apt_keys: []
 apt_repositories: []
+apt_preferences: []
 apt_sources: []

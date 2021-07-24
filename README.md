@@ -3,7 +3,7 @@ Ansible role: Apt
 =========
 [![Ansible Role](https://img.shields.io/ansible/role/54865)](https://galaxy.ansible.com/moletti/apt) [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/moletti/ansible-role-apt)](https://github.com/moletti/ansible-role-apt/releases) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/moletti/ansible-role-apt/Ansible%20Molecule?label=test)](https://github.com/moletti/ansible-role-apt/actions/workflows/molecule.yml) [![Ansible Quality Score](https://img.shields.io/ansible/quality/54865)](https://galaxy.ansible.com/moletti/apt) [![Ansible Role](https://img.shields.io/ansible/role/d/54865)](https://galaxy.ansible.com/moletti/apt)
 
-Base role for managing apt packages, repositories and keys.
+Base role for managing apt packages, repositories, keys, sources and preferences.
 
 
 Role install
@@ -30,6 +30,11 @@ Example Playbook
     apt_sources:
       - "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main"
       - "deb http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main"
+    apt_preferences:
+      - package: 'some_package'
+        filename: 'some'
+        pin: 'release a=testing'
+        priority: 800
   roles:
     - { role: moletti.apt, tags: apt }
 ```
@@ -43,6 +48,7 @@ Role Variables
 | apt_keys         | list(dict)   | []      | Manages apt keys                             |
 | apt_sources      | list(string) | []      | Manages apt sources ( /etc/apt/source.list ) |
 | apt_repositories | list(dict)   | []      | Manages apt repositories                     |
+| apt_preferences  | list(dict)   | []      | Manages apt preferences                      |
 
 
 
@@ -97,6 +103,17 @@ apt_repositories:
 | update_cache_retries         |  -          |            |
 | update_cache_retry_max_delay |  -          |            |
 | validate_cert                |  -          |            |
+
+apt_preferences:
+
+|  Parameter                   |  required   | default    |
+|------------------------------|-------------|------------|
+| filename                     |  +          |            |
+| package                      |  -          | *          |
+| pin                          |  +          |            |
+| priority                     |  +          |            |
+| state                        |  -          | present    |
+| explantion                   |  -          |            |
 
 LICENSE
 -------
