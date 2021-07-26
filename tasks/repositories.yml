@@ -13,3 +13,30 @@
     validate_cert: "{{ item.validate_certs | default(omit) }}"
   with_items:
     - "{{ apt_repositories }}"
+
+- name: Gather all repositories
+  ansible.builtin.find:
+    path: /etc/apt/sources.list.d/
+    file_type: file
+  register: apt_repositories_all
+  when: apt_repositories_remove_unmanaged
+
+- name: Set fact apt_repositories_all_list
+  ansible.builtin.set_fact:
+    apt_repositories_all_list: "{{ apt_repositories_all.files | map(attribute='path') | list }}"
+  when: apt_repositories_remove_unmanaged
+
+- name: Set fact apt_repositories_managed_list
+  ansible.builtin.set_fact:
+    apt_repositories_managed_list: "{{ apt_repositories_managed_list | default([]) + ['/etc/apt/sources.list.d/' + item + '.list'] }}"
+  with_items:
+    - "{{ apt_repositories | map(attribute='filename') | list }}"
+  when: apt_repositories_remove_unmanaged
+
+- name: Remove unmanaged repositories
+  ansible.builtin.file:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ apt_repositories_all_list | difference(apt_repositories_managed_list) }}"
+  when: apt_repositories_remove_unmanaged

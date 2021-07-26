@@ -2,5 +2,6 @@
 apt_packages: []
 apt_keys: []
 apt_repositories: []
+apt_repositories_remove_unmanaged: false
 apt_preferences: []
 apt_sources: []
