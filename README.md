@@ -27,6 +27,7 @@ Example Playbook
     apt_repositories:
       - filename: nginx
         repo: "deb https://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"
+    apt_repositories_remove_unmanaged: true
     apt_sources:
       - "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main"
       - "deb http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main"
@@ -42,15 +43,14 @@ Example Playbook
 
 Role Variables
 --------------
-|  variable        | type         | default | description                                  |
-|------------------|--------------|---------|----------------------------------------------|
-| apt_packages     | list(dict)   | []      | Manages apt packages                         |
-| apt_keys         | list(dict)   | []      | Manages apt keys                             |
-| apt_sources      | list(string) | []      | Manages apt sources ( /etc/apt/source.list ) |
-| apt_repositories | list(dict)   | []      | Manages apt repositories                     |
-| apt_preferences  | list(dict)   | []      | Manages apt preferences                      |
-
-
+|  variable                          | type         | default | description                                                  |
+|------------------------------------|--------------|---------|--------------------------------------------------------------|
+| apt_packages                       | list(dict)   | []      | Manages apt packages                                         |
+| apt_keys                           | list(dict)   | []      | Manages apt keys                                             |
+| apt_sources                        | list(string) | []      | Manages apt sources ( /etc/apt/source.list )                 |
+| apt_repositories                   | list(dict)   | []      | Manages apt repositories                                     |
+| apt_repositories_remove_unmanaged  | bool         | false   | Remove all unmanaged repositories ( /etc/apt/source.list.d ) |
+| apt_preferences                    | list(dict)   | []      | Manages apt preferences                                      |
 
 apt_packages:
 

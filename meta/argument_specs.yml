@@ -141,6 +141,10 @@ argument_specs:
             type: "bool"
             required: false
 
+      apt_repositories_remove_unmanaged:
+        type: "bool"
+        default: "false"
+
       apt_preferences:
         type: "list"
         default: []
