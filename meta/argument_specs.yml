@@ -145,6 +145,15 @@ argument_specs:
         type: "bool"
         default: "false"
 
+      apt_repositories_remove_mode:
+        type: "string"
+        default: "default"
+        choices: ["default", "postfix"]
+
+      apt_repositories_postfix:
+        type: "string"
+        default: "_ansible"
+
       apt_preferences:
         type: "list"
         default: []

@@ -13,6 +13,7 @@ apt_repositories:
   - filename: not_exist
     repo: "deb https://not_exist.com/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} not_exist"
     state: absent
+apt_repositories_remove_unmanaged: true
 apt_preferences:
   - package: 'some_package'
     filename: 'some'
