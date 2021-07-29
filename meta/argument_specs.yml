@@ -141,6 +141,19 @@ argument_specs:
             type: "bool"
             required: false
 
+      apt_repositories_remove_unmanaged:
+        type: "bool"
+        default: "false"
+
+      apt_repositories_remove_mode:
+        type: "str"
+        default: "default"
+        choices: ["default", "postfix"]
+
+      apt_repositories_postfix:
+        type: "str"
+        default: "_ansible"
+
       apt_preferences:
         type: "list"
         default: []

@@ -8,8 +8,9 @@
     - name: Gathering package_facts
       ansible.builtin.package_facts:
         manager: apt
+
     - name: Test packages
-      assert:
+      ansible.builtin.assert:
         that:
           - "{% if item.state in ('present', 'latest') -%}
               {%- if item.name is subset ansible_facts.packages.keys() -%}
@@ -28,3 +29,31 @@
         quiet: true
       with_items:
         - "{{ apt_packages }}"
+
+    - name: Gathering stat apt_repositories
+      ansible.builtin.stat:
+        path: "/etc/apt/sources.list.d/{{ item.filename }}.list"
+      register: apt_repositories_stats
+      with_items:
+        - "{{ apt_repositories }}"
+
+    - name: Test repositories
+      ansible.builtin.assert:
+        that:
+          - "{% if item.item.state | default('present') == 'present' -%}
+              {%- if item.stat.exists -%}
+                True
+              {%- else -%}
+                False
+              {%- endif -%}
+             {%- endif -%}"
+          - "{% if item.item.state | default('present') == 'absent' -%}
+              {%- if not item.stat.exists -%}
+                True
+              {%- else -%}
+                False
+              {%- endif -%}
+             {%- endif -%}"
+        quiet: true
+      with_items:
+        - "{{ apt_repositories_stats.results }}"
