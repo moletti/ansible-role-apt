@@ -1,5 +1,13 @@
 # Changelog
 
+# [2.3.0](https://github.com/moletti/ansible-role-apt/compare/v2.2.0...v2.3.0) (2021-07-29)
+
+
+### Features
+
+* Add remove mode postfix for apt_repositories ([f498b2b](https://github.com/moletti/ansible-role-apt/commit/f498b2b7f9c7179d9b5890baa17a747c4724b6d8))
+* Remove unmanaged repositories ([3f6d3c4](https://github.com/moletti/ansible-role-apt/commit/3f6d3c4ee265cce63005093711fc2ad0e01664fc))
+
 # [2.2.0](https://github.com/moletti/ansible-role-apt/compare/v2.1.0...v2.2.0) (2021-07-24)
 
 
