@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.4.0](https://github.com/moletti/ansible-role-apt/compare/v2.3.0...v2.4.0) (2021-07-30)
+
+
+### Features
+
+* Add apt_repositories_exclude ([73b8bc5](https://github.com/moletti/ansible-role-apt/commit/73b8bc548bd82a377d49783438dec989075d76a6))
+
 # [2.3.0](https://github.com/moletti/ansible-role-apt/compare/v2.2.0...v2.3.0) (2021-07-29)
 
 
