@@ -15,11 +15,15 @@
 
 - import_tasks: repositories.yml
   when: apt_repositories | length > 0
-  tags: repositiores
+  tags: repositories
+
+- import_tasks: repositories_unmanaged.yml
+  when: apt_repositories_remove_unmanaged
+  tags: repositories
 
 - import_tasks: preferences.yml
   when: apt_preferences | length > 0
-  tags: repositiores
+  tags: preferences
 
 - import_tasks: packages.yml
   when: apt_packages | length > 0

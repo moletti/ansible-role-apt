@@ -1,37 +1,20 @@
 ---
-- name: Add repositories into sources list
-  ansible.builtin.apt_repository:
-    codename: "{{ item.codename | default(omit) }}"
-    filename: "{{ item.filename }}"
-    install_python_apt: "{{ item.install_python_apt | default(omit) }}"
-    mode: "{{ item.mode | default(omit) }}"
-    repo: "{{ item.repo }}"
-    state: "{{ item.state | default(omit) }}"
-    update_cache: "{{ item.update_cache | default(omit) }}"
-    update_cache_retries: "{{ item.update_cache_retries | default(omit) }}"
-    update_cache_retry_max_delay: "{{ item.update_cache_retry_max_delay  | default(omit) }}"
-    validate_cert: "{{ item.validate_certs | default(omit) }}"
-  with_items:
-    - "{{ apt_repositories }}"
-
 - name: Gather all repositories
   ansible.builtin.find:
     path: /etc/apt/sources.list.d/
     file_type: file
   register: apt_repositories_all
-  when: apt_repositories_remove_unmanaged
 
 - name: Set fact apt_repositories_all_list
   ansible.builtin.set_fact:
     apt_repositories_all_list: "{{ apt_repositories_all.files | map(attribute='path') | list }}"
-  when: apt_repositories_remove_unmanaged
 
 - name: Set fact apt_repositories_managed_list ( default )
   ansible.builtin.set_fact:
     apt_repositories_managed_list: "{{ apt_repositories_managed_list | default([]) + ['/etc/apt/sources.list.d/' + item + '.list'] }}"
   with_items:
     - "{{ apt_repositories | map(attribute='filename') | list }}"
-  when: apt_repositories_remove_unmanaged and apt_repositories_remove_mode == "default"
+  when: apt_repositories_remove_mode == "default"
 
 - name: Gather apt_repositories_managed_list ( postfix )
   ansible.builtin.find:
@@ -39,19 +22,18 @@
     patterns: ".*{{ apt_repositories_postfix }}.list"
     file_type: file
   register: apt_repositories_managed
-  when: apt_repositories_remove_unmanaged and apt_repositories_remove_mode == "postfix"
+  when: apt_repositories_remove_mode == "postfix"
 
 - name: Set fact apt_repositories_managed_list ( postfix )
   ansible.builtin.set_fact:
     apt_repositories_managed_list: "{{ apt_repositories_managed.files | map(attribute='path') | list }}"
-  when: apt_repositories_remove_unmanaged and apt_repositories_remove_mode == "postfix"
+  when: apt_repositories_remove_mode == "postfix"
 
 - name: Set fact apt_repositories_exclude_list
   ansible.builtin.set_fact:
     apt_repositories_exclude_list: "{{ apt_repositories_exclude_list | default([]) + ['/etc/apt/sources.list.d/' + item + '.list'] }}"
   with_items:
     - "{{ apt_repositories_exclude }}"
-  when: apt_repositories_remove_unmanaged
 
 - name: Remove unmanaged repositories
   ansible.builtin.file:
@@ -59,4 +41,3 @@
     state: absent
   with_items:
     - "{{ apt_repositories_all_list | difference(apt_repositories_managed_list | default([]) + apt_repositories_exclude_list | default([]) ) }}"
-  when: apt_repositories_remove_unmanaged
