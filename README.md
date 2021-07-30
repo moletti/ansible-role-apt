@@ -52,6 +52,7 @@ Role Variables
 | apt_repositories_postfix           | string       | _ansible | Apt repositories postfix                                     |
 | apt_repositories_remove_unmanaged  | bool         | false    | Remove all unmanaged repositories ( /etc/apt/source.list.d ) |
 | apt_repositories_remove_mode       | string       | default  | If set by "default" remove all repositories that are not in the "apt_repositories". If set "postfix" remove all repositories that are not match regular expression ".*{{ apt_repositories_postfix }}.list" |
+| apt_repositories_exclude           | list(string) | []       | Exclude files from deletion                                  |
 | apt_preferences                    | list(dict)   | []       | Manages apt preferences                                      |
 
 apt_packages:

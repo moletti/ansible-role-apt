@@ -154,6 +154,11 @@ argument_specs:
         type: "str"
         default: "_ansible"
 
+      apt_repositories_exclude:
+        type: list
+        default: []
+        elements: "str"
+
       apt_preferences:
         type: "list"
         default: []
