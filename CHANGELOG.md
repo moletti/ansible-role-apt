@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/moletti/ansible-role-apt/compare/v2.4.0...v2.4.1) (2021-07-31)
+
+
+### Bug Fixes
+
+* Remove duplicate code ([76885fc](https://github.com/moletti/ansible-role-apt/commit/76885fcbd0fb4de5d178e34d65c3af579c5329e2))
+
 # [2.4.0](https://github.com/moletti/ansible-role-apt/compare/v2.3.0...v2.4.0) (2021-07-30)
 
 
