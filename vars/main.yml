@@ -5,3 +5,6 @@ _apt_dependencies:
     - ca-certificates
 
 apt_dependencies: "{{ _apt_dependencies[ansible_os_family] | default(_apt_dependencies['default']) }}"
+
+apt_repositories_path: "/etc/apt/preferences.d/"
+apt_repositories_ext: ".list"
