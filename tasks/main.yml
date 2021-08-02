@@ -25,6 +25,10 @@
   when: apt_preferences | length > 0
   tags: preferences
 
+- import_tasks: preferences_unmanaged.yml
+  when: apt_preferences_remove_unmanaged
+  tags: preferences
+
 - import_tasks: packages.yml
   when: apt_packages | length > 0
   tags: packages

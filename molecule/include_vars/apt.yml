@@ -24,3 +24,4 @@ apt_preferences:
     filename: 'unused'
     pin: 'release a=testing'
     priority: 0
+apt_preferences_remove_unmanaged: true

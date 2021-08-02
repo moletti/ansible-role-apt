@@ -7,4 +7,8 @@ apt_repositories_remove_mode: "default"
 apt_repositories_postfix: "_ansible"
 apt_repositories_exclude: []
 apt_preferences: []
+apt_preferences_remove_unmanaged: false
+apt_preferences_remove_mode: "default"
+apt_preferences_postfix: "_ansible"
+apt_preferences_exclude: []
 apt_sources: []

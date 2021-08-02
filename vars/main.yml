@@ -8,3 +8,6 @@ apt_dependencies: "{{ _apt_dependencies[ansible_os_family] | default(_apt_depend
 
 apt_repositories_path: "/etc/apt/preferences.d/"
 apt_repositories_ext: ".list"
+
+apt_preferences_path: ""
+apt_preferences_ext: ".pref"

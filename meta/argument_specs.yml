@@ -185,3 +185,21 @@ argument_specs:
           explantion:
             type: "str"
             required: false
+
+      apt_preferences_remove_unmanaged:
+        type: "bool"
+        default: "false"
+
+      apt_preferences_remove_mode:
+        type: "str"
+        default: "default"
+        choices: ["default", "postfix"]
+
+      apt_preferences_postfix:
+        type: "str"
+        default: "_ansible"
+
+      apt_preferences_exclude:
+        type: list
+        default: []
+        elements: "str"
