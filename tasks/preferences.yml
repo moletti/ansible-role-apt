@@ -2,7 +2,7 @@
 - name: Add apt preferences
   ansible.builtin.template:
     src: preferences.j2
-    dest: "/etc/apt/preferences.d/{{ item.filename }}.pref"
+    dest: "{{ apt_preferences_path + item.filename + apt_preferences_ext }}"
     owner: root
     group: root
     mode: 0644
@@ -13,7 +13,7 @@
 
 - name: Remove apt preferences
   ansible.builtin.file:
-    dest: "/etc/apt/preferences.d/{{ item.filename }}.pref"
+    dest: "{{ apt_preferences_path + item.filename + apt_preferences_ext }}"
     state: absent
   when: item.state | default("present") == "absent"
   register: remove_preferences
