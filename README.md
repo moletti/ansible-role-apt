@@ -54,6 +54,10 @@ Role Variables
 | apt_repositories_remove_mode       | string       | default  | If set by "default" remove all repositories that are not in the "apt_repositories". If set "postfix" remove all repositories that are not match regular expression ".*{{ apt_repositories_postfix }}.list" |
 | apt_repositories_exclude           | list(string) | []       | Exclude files from deletion                                  |
 | apt_preferences                    | list(dict)   | []       | Manages apt preferences                                      |
+| apt_preferences_postfix            | string       | _ansible | Apt preferences postfix                                      |
+| apt_preferences_remove_unmanaged   | bool         | false    | Remove all unmanaged preferences ( /etc/apt/preferences.d/ ) |
+| apt_preferences_remove_mode        | string       | default  | If set by "default" remove all preferences that are not in the "apt_preferences". If set "postfix" remove all preferences that are not match regular expression ".*{{ apt_preferences_postfix }}.list" |
+| apt_preferences_exclude            | list(string) | []       | Exclude files from deletion                                  |
 
 apt_packages:
 
