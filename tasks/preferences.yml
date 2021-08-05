@@ -7,7 +7,7 @@
     group: root
     mode: 0644
   when: item.state | default("present") == "present"
-  register: template_preferences
+  register: apt_template_preferences
   with_items:
     - "{{ apt_preferences }}"
 
@@ -16,7 +16,7 @@
     dest: "{{ apt_preferences_path + item.filename + apt_preferences_ext }}"
     state: absent
   when: item.state | default("present") == "absent"
-  register: remove_preferences
+  register: apt_remove_preferences
   with_items:
     - "{{ apt_preferences }}"
 
@@ -24,4 +24,4 @@
 - name: Apt update cache
   ansible.builtin.apt:
     update_cache: yes
-  when: template_preferences is changed or remove_preferences is changed
+  when: apt_template_preferences is changed or apt_remove_preferences is changed
