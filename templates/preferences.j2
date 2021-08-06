@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
-{% if item.explantion is defined and item.explantion %}
-Explantion: {{ item.explantion }}
+{% if item.explanation is defined and item.explanation %}
+Explanation: {{ item.explanation }}
 {% endif %}
 Package: {{ item.package | default('*') }}
 Pin: {{ item.pin }}

@@ -123,7 +123,7 @@ apt_preferences:
 | pin                          |  +          |            |
 | priority                     |  +          |            |
 | state                        |  -          | present    |
-| explantion                   |  -          |            |
+| explanation                  |  -          |            |
 
 LICENSE
 -------
