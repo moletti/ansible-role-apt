@@ -1,7 +1,7 @@
 ---
 - name: Gather all repositories
   ansible.builtin.find:
-    path: /etc/apt/sources.list.d/
+    path: "{{ apt_repositories_path }}"
     file_type: file
   register: apt_repositories_all
 
@@ -11,15 +11,15 @@
 
 - name: Set fact apt_repositories_managed_list ( default )
   ansible.builtin.set_fact:
-    apt_repositories_managed_list: "{{ apt_repositories_managed_list | default([]) + ['/etc/apt/sources.list.d/' + item + '.list'] }}"
+    apt_repositories_managed_list: "{{ apt_repositories_managed_list | default([]) + [apt_repositories_path + item + apt_repositories_ext] }}"
   with_items:
     - "{{ apt_repositories | map(attribute='filename') | list }}"
   when: apt_repositories_remove_mode == "default"
 
 - name: Gather apt_repositories_managed_list ( postfix )
   ansible.builtin.find:
-    path: /etc/apt/source.list.d/
-    patterns: ".*{{ apt_repositories_postfix }}.list"
+    path: "{{ apt_repositories_path }}"
+    patterns: ".*{{ apt_repositories_postfix }}{{ apt_repositories_ext }}"
     file_type: file
   register: apt_repositories_managed
   when: apt_repositories_remove_mode == "postfix"
@@ -31,7 +31,7 @@
 
 - name: Set fact apt_repositories_exclude_list
   ansible.builtin.set_fact:
-    apt_repositories_exclude_list: "{{ apt_repositories_exclude_list | default([]) + ['/etc/apt/sources.list.d/' + item + '.list'] }}"
+    apt_repositories_exclude_list: "{{ apt_repositories_exclude_list | default([]) + [apt_repositories_path + item + apt_repositories_ext] }}"
   with_items:
     - "{{ apt_repositories_exclude }}"
 

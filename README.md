@@ -43,17 +43,24 @@ Example Playbook
 
 Role Variables
 --------------
-|  variable                          | type         | default  | description                                                  |
-|------------------------------------|--------------|----------|--------------------------------------------------------------|
-| apt_packages                       | list(dict)   | []       | Manages apt packages                                         |
-| apt_keys                           | list(dict)   | []       | Manages apt keys                                             |
-| apt_sources                        | list(string) | []       | Manages apt sources ( /etc/apt/source.list )                 |
-| apt_repositories                   | list(dict)   | []       | Manages apt repositories                                     |
-| apt_repositories_postfix           | string       | _ansible | Apt repositories postfix                                     |
-| apt_repositories_remove_unmanaged  | bool         | false    | Remove all unmanaged repositories ( /etc/apt/source.list.d ) |
-| apt_repositories_remove_mode       | string       | default  | If set by "default" remove all repositories that are not in the "apt_repositories". If set "postfix" remove all repositories that are not match regular expression ".*{{ apt_repositories_postfix }}.list" |
-| apt_repositories_exclude           | list(string) | []       | Exclude files from deletion                                  |
-| apt_preferences                    | list(dict)   | []       | Manages apt preferences                                      |
+|  variable                          | type         | default                    | description                                                  |
+|------------------------------------|--------------|----------------------------|--------------------------------------------------------------|
+| apt_packages                       | list(dict)   | []                         | Manages apt packages                                         |
+| apt_keys                           | list(dict)   | []                         | Manages apt keys                                             |
+| apt_sources                        | list(string) | []                         | Manages apt sources ( /etc/apt/source.list )                 |
+| apt_postfix                        | string       | _ansible                   | Global apt postfix                                           |
+| apt_remove_unmanaged               | bool         | false                      | Remove all unmanaged resources ( repositories, preferences, etc ) |
+| apt_remove_mode                    | string       | default                    | If set by "default" remove all resources that are not in the "apt_resource". If set "postfix" remove all resource that are not match regular expression ".*{{ apt_resources_postfix }}{{ apt_resources_ext }}" |
+| apt_repositories                   | list(dict)   | []                         | Manages apt repositories                                     |
+| apt_repositories_postfix           | string       | {{ apt_postfix }}          | Apt repositories postfix                                     |
+| apt_repositories_remove_unmanaged  | bool         | {{ apt_remove_unmanaged }} | Remove all unmanaged repositories ( /etc/apt/source.list.d ) |
+| apt_repositories_remove_mode       | string       | {{ apt_remove_mode }}      | If set by "default" remove all repositories that are not in the "apt_repositories". If set "postfix" remove all repositories that are not match regular expression ".*{{ apt_repositories_postfix }}.list" |
+| apt_repositories_exclude           | list(string) | []                         | Exclude files from deletion                                  |
+| apt_preferences                    | list(dict)   | []                         | Manages apt preferences                                      |
+| apt_preferences_postfix            | string       | {{ apt_postfix }}          | Apt preferences postfix                                      |
+| apt_preferences_remove_unmanaged   | bool         | {{ apt_remove_unmanaged }} | Remove all unmanaged preferences ( /etc/apt/preferences.d/ ) |
+| apt_preferences_remove_mode        | string       | {{ apt_remove_mode }}      | If set by "default" remove all preferences that are not in the "apt_preferences". If set "postfix" remove all preferences that are not match regular expression ".*{{ apt_preferences_postfix }}.list" |
+| apt_preferences_exclude            | list(string) | []                         | Exclude files from deletion                                  |
 
 apt_packages:
 
@@ -116,7 +123,7 @@ apt_preferences:
 | pin                          |  +          |            |
 | priority                     |  +          |            |
 | state                        |  -          | present    |
-| explantion                   |  -          |            |
+| explanation                  |  -          |            |
 
 LICENSE
 -------

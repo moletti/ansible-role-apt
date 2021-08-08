@@ -1,0 +1,43 @@
+---
+- name: Gather all preferences
+  ansible.builtin.find:
+    path: "{{ apt_preferences_path }}"
+    file_type: file
+  register: apt_preferences_all
+
+- name: Set fact apt_preferences_all_list
+  ansible.builtin.set_fact:
+    apt_preferences_all_list: "{{ apt_preferences_all.files | map(attribute='path') | list }}"
+
+- name: Set fact apt_preferences_managed_list ( default )
+  ansible.builtin.set_fact:
+    apt_preferences_managed_list: "{{ apt_preferences_managed_list | default([]) + [apt_preferences_path + item + apt_preferences_ext] }}"
+  with_items:
+    - "{{ apt_preferences | map(attribute='filename') | list }}"
+  when: apt_preferences_remove_mode == "default"
+
+- name: Gather apt_preferences_managed_list ( postfix )
+  ansible.builtin.find:
+    path: "{{ apt_preferences_path }}"
+    patterns: ".*{{ apt_preferences_postfix }}{{ apt_preferences_ext }}"
+    file_type: file
+  register: apt_preferences_managed
+  when: apt_preferences_remove_mode == "postfix"
+
+- name: Set fact apt_preferences_managed_list ( postfix )
+  ansible.builtin.set_fact:
+    apt_preferences_managed_list: "{{ apt_preferences_managed.files | map(attribute='path') | list }}"
+  when: apt_preferences_remove_mode == "postfix"
+
+- name: Set fact apt_preferences_exclude_list
+  ansible.builtin.set_fact:
+    apt_preferences_exclude_list: "{{ apt_preferences_exclude_list | default([]) + [apt_preferences_path + item + apt_preferences_ext] }}"
+  with_items:
+    - "{{ apt_preferences_exclude }}"
+
+- name: Remove unmanaged preferences
+  ansible.builtin.file:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ apt_preferences_all_list | difference(apt_preferences_managed_list | default([]) + apt_preferences_exclude_list | default([]) ) }}"

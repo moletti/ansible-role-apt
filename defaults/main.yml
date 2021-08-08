@@ -1,10 +1,20 @@
 ---
 apt_packages: []
 apt_keys: []
-apt_repositories: []
-apt_repositories_remove_unmanaged: false
-apt_repositories_remove_mode: "default"
-apt_repositories_postfix: "_ansible"
-apt_repositories_exclude: []
-apt_preferences: []
 apt_sources: []
+
+apt_remove_unmanaged: false
+apt_remove_mode: "default"
+apt_postfix: "_ansible"
+
+apt_repositories: []
+apt_repositories_remove_unmanaged: "{{ apt_remove_unmanaged }}"
+apt_repositories_remove_mode: "{{ apt_remove_mode }}"
+apt_repositories_postfix: "{{ apt_postfix }}"
+apt_repositories_exclude: []
+
+apt_preferences: []
+apt_preferences_remove_unmanaged: "{{ apt_remove_unmanaged }}"
+apt_preferences_remove_mode: "{{ apt_remove_mode }}"
+apt_preferences_postfix: "{{ apt_postfix }}"
+apt_preferences_exclude: []
