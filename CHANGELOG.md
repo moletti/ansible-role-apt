@@ -1,5 +1,19 @@
 # Changelog
 
+# [2.5.0](https://github.com/moletti/ansible-role-apt/compare/v2.4.1...v2.5.0) (2021-08-08)
+
+
+### Bug Fixes
+
+* Fix apt_preferences explanation ([f3572e8](https://github.com/moletti/ansible-role-apt/commit/f3572e88e0aa0ee356fe65f36744bf1474bdde92))
+* Fix variable naming ([1fcd439](https://github.com/moletti/ansible-role-apt/commit/1fcd43998b5e08e29b71f5d8e95a28278ce1ddc2))
+
+
+### Features
+
+* Add global postfix, remove_unmanaged, remove_mode variables ([5dcaa62](https://github.com/moletti/ansible-role-apt/commit/5dcaa6211a2da7c0537c26db9bbad2e7a9a1b45e))
+* Add preferences_unmanaged ([39c6f6a](https://github.com/moletti/ansible-role-apt/commit/39c6f6a05b1db129c230e6332801c2d48591c001))
+
 ## [2.4.1](https://github.com/moletti/ansible-role-apt/compare/v2.4.0...v2.4.1) (2021-07-31)
 
 
